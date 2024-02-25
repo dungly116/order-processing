@@ -7,15 +7,9 @@ import (
 	"log"
 
 	"github.com/dungly116/order-processing/internal/kafkaconfig"
+	"github.com/dungly116/order-processing/models"
 	"github.com/segmentio/kafka-go"
 )
-
-type Order struct {
-	ID       string  `json:"id"`
-	Product  string  `json:"product"`
-	Quantity int     `json:"quantity"`
-	Price    float64 `json:"price"`
-}
 
 func KafkaConsumerModule(config kafkaconfig.Config) {
 	r := kafka.NewReader(kafka.ReaderConfig{
@@ -34,7 +28,7 @@ func KafkaConsumerModule(config kafkaconfig.Config) {
 			log.Fatal(err)
 		}
 
-		order := Order{}
+		order := models.Order{}
 		err = json.Unmarshal(msg.Value, &order)
 		if err != nil {
 			log.Println("Error decoding order:", err)
