@@ -1,4 +1,5 @@
 # Order Processing System
+## Features
 1. Order Receiving Module:
 . Must receive order data in real time.
 . Should send a confirmation back to the sender once the order is received.
@@ -9,7 +10,6 @@
 . Develop Kafka consumers to process orders from the Kafka topic.
 . Orders should be processed and stored in the database sequentially.
 . Ensure reliable processing (handling of failures, retries).
-## Features
 ### Installation
 git clone https://github.com/dungly116/order-processing.git
 
