@@ -7,18 +7,12 @@ import (
 	"log"
 
 	"github.com/dungly116/order-processing/internal/kafkaconfig"
+	"github.com/dungly116/order-processing/models"
 	"github.com/segmentio/kafka-go"
 )
 
-type Order struct {
-	ID       string  `json:"id"`
-	Product  string  `json:"product"`
-	Quantity int     `json:"quantity"`
-	Price    float64 `json:"price"`
-}
-
 func OrderReceivingModule(producer *kafka.Writer) {
-	order := Order{ID: "123", Product: "ExampleProduct", Quantity: 2, Price: 19.99}
+	order := models.Order{ID: "123", Product: "ExampleProduct", Quantity: 2, Price: 19.99}
 
 	orderJSON, err := json.Marshal(order)
 	if err != nil {
