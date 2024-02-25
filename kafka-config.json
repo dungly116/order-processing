@@ -1,0 +1,4 @@
+{
+    "brokers": ["localhost:9092"],
+    "topic": "order-topic"
+  }
