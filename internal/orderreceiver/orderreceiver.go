@@ -29,7 +29,6 @@ func OrderReceivingModule(producer *kafka.Writer) {
 		Value: orderJSON,
 	}
 
-	// Use context.Background() as the first argument for WriteMessages.
 	err = producer.WriteMessages(context.Background(), message)
 	if err != nil {
 		log.Fatal(err)
@@ -39,7 +38,14 @@ func OrderReceivingModule(producer *kafka.Writer) {
 }
 
 func NewOrderProducer(config kafkaconfig.Config) *kafka.Writer {
-	// Implement Kafka producer initialization here based on the provided config.
-	// Return the initialized Kafka producer.
-	return nil
+	writerConfig := kafka.WriterConfig{
+		Brokers:  config.Brokers,
+		Topic:    config.Topic,
+		Balancer: &kafka.LeastBytes{},
+	}
+
+	// Initialize Kafka writer
+	writer := kafka.NewWriter(writerConfig)
+
+	return writer
 }

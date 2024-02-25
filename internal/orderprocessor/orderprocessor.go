@@ -41,8 +41,6 @@ func KafkaConsumerModule(config kafkaconfig.Config) {
 			continue
 		}
 
-		// Process the order and store in the database sequentially.
 		fmt.Println("Processing Order:", order)
-		// Add your processing logic and database storage here.
 	}
 }
